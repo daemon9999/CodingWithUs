@@ -1,5 +1,5 @@
 
-from operator import contains
+
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 

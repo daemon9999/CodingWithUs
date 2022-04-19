@@ -1,0 +1,52 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<style>
+    .table{
+        width: 80%;
+    }
+</style>
+<div class="container">
+    <h1 class="text-light">Dashboard</h1>
+    <p class="text-light">In this table, you can see your codes.</p>
+    <hr style="height: 3px; background: linear-gradient(to right, indigo, purple, blue, cyan);">
+    {% if codes %}
+    <table class="table table-responsive mx-auto">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TITLE</th>
+                <th>DATE</th>
+                <th>LANGUAGE</th>
+                <th colspan="2">CONFIGURATION</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for code in codes %}
+            <tr>
+                <th scope="row" style="line-height: 40px;">{{code.id}}</th>
+                <td><a href="{% url 'code:detail' code.id %}" class="btn btn-primary">{{code.title}}</a></td>
+                <td style="white-space: nowrap; line-height: 40px;">{{code.code_created_date}}</td>
+                <td style="line-height: 40px;"><a href="{% url 'languages:detail' code.code_language %}" style="color: orange; text-decoration: none;">{{code.code_language}}</a></td>
+                <td><a href="{% url 'code:update' code.id %}" class="btn btn-success">Update</a></td>
+                <td><a href="{% url 'code:delete' code.id %}" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert alert-danger">You haven't created any code yet...</div>
+    {% endif %}
+
+    <a href="{% url 'code:addNewCode' %}" class="btn btn-success d-block">Add a new code</a>
+
+    
+
+
+</div>
+
+{% endblock %}

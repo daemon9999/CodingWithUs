@@ -1,0 +1,78 @@
+{% load static %}
+
+<style>
+    .dropdown-link{
+        display: block;
+        padding: 8px;
+        color: white;
+        text-decoration: none;
+    }
+    .dropdown-link:hover{
+        text-decoration: none;
+        color: white;
+        background: linear-gradient(blue,purple);
+        
+    }
+
+    .dropdown-link:hover:first-of-type{
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+    }
+    .dropdown-link:hover:last-of-type{
+        border-bottom-left-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+    }
+    
+</style>
+<nav class="navbar navbar-expand-md fixed" >
+    <a href="{% url 'index' %}" class="navbar-brand" style="height: 50px;">
+        <span><img src="{% static 'images/brand.png' %}" alt="The Best Website" class="h-100" style="margin-left: 20px;"></span>
+    </a>
+
+    <button type = "button" class="navbar-toggler " data-toggle="collapse" data-target="#navbar">
+        <img src="{% static 'images/navbar-toggler-icon.png' %}">
+    </button>
+
+    <div class="collapse navbar-collapse text-left mynavbar" style="padding-left: 20px; padding-top: 10px;" id="navbar">
+        <ul class="navbar-nav mr-auto">
+           <li class="nav-item"><a class="nav-link text-light active" href="{% url 'index' %}">HOME</a></li>
+           <li class="nav-item"><a class="nav-link text-light" href="{% url 'about' %}">About</a></li>
+           <li class="nav-item"><a class="nav-link text-light" href="{% url 'code:codes' %}">All Codes</a></li>
+        </ul>
+        <ul class="navbar-nav" style="margin-left: auto;">
+           
+            {% if request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+               <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="#">Account</a>
+               <ul class="dropdown-menu mt-3" style="padding: 0;">
+                   <a href="{% url 'userprofile:updateUsername' %}" class="dropdown-link f">Change Username</a>
+                   <a href="{% url 'userprofile:updatePassword' %}" class="dropdown-link">Change Password</a>
+                   <a href="{% url 'code:dashboard' %}" class="dropdown-link f">Dashboard</a>
+               </ul>
+            </li>
+            <li class="nav-item "><a class="nav-link text-light" href="{% url 'userprofile:logout' %}">Logout</a></li>
+            <li class="nav-item"><a href="{% url 'userprofile:profileDetail' %}" class="nav-link text-light ">Profile: {{request.user.username}}</a></li>
+            {% else %}
+            <li class="nav-item "><a class="nav-link text-light" href="{% url 'userprofile:register' %}">Register</a></li>
+            <li class="nav-item "><a class="nav-link text-light" href="{% url 'userprofile:login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    
+</nav>
+<br>
+<br>
+
+<div class="row header mt-3">
+    <div class="col-sm-3 programming">
+        <img src="{% static 'images/programming.jpg' %}" alt="" class="rounded">
+    </div>
+   <div class="col-sm-9">
+    <h2>CODING WIITH US !</h2>
+    <p>This website is very useful for programmers who are <strong>beginner</strong> in this profession...</p>
+   </div>
+</div>
+
+
+
+

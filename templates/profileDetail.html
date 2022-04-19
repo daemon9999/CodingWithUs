@@ -1,0 +1,141 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+
+    .card{
+        background: linear-gradient(-45deg, yellow, orange, red)
+    }
+    .registration-button{
+        font-size: 16px;
+        width: 70%;
+    }
+    .registration-button:hover{
+        text-decoration: none;
+        color: white
+    }
+    .card-header{
+        font-size: 20px;
+    }
+
+    #about {
+        background: linear-gradient(to left, cyan ,blue);
+        color: white;
+        resize: none;
+        border: 3px solid orange;
+        border-radius: 20px;
+        padding: 10px;
+        font-size: 16px;
+    }
+    #about::placeholder{
+        color: white;
+    }
+    #about:focus{
+
+
+        outline: none;
+    }
+
+    label{
+        display: none;
+    }
+    [type=file] {
+        opacity: 0;
+        margin-left: auto;
+    }
+    .card-body{
+        position: relative;
+        
+    }
+
+    .s{
+        position: absolute;
+        bottom: 95px;
+        right: 224px;
+        
+
+    }
+
+    @media only screen and (max-width: 768px) {
+        .first{
+            margin-bottom: 30px;
+        }
+    }
+</style>
+<div class="container">
+    <h1 class="text-light text-center">Welcome To Your Profile Details, {{request.user}}</h1>
+    <hr style="height: 3px; background: linear-gradient(to right, indigo, purple, blue, cyan);">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card first mx-auto">
+                <div class="card-header text-center text-light">
+                    Profile Picture 
+                </div>
+                <div class="card-body text-center">
+                        {% if request.user.is_superuser %}
+                        <img src="{% static 'images/admin.png' %}" class="rounded-circle" alt="" style="width: 150px;">
+                        {% else %}
+                        <img src="{% static 'images/pic.jpg' %}" class="rounded-circle" alt="" style="width: 150px;">
+                        {% endif %}
+                        <h4 class="text-light mt-4">Username: {{user.username}}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-light">
+                    Details
+                </div>
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-sm-8 text-light">
+                            E-mail: {{user.email}}
+                        </div>
+
+                    </div>
+                    <hr class="ml-0 mr-0">
+                    <p class="text-light">
+                        {% if codesCount == 0 %}
+                        No code was published...
+                        {% else %}
+                        The number of codes published: {{codesCount}}
+                        {% endif %}
+                    </p>
+                    <hr>
+                    <p class="text-light">
+                        The date of creation: {{user.date_joined|date:"d.m.Y"}}
+                    </p>
+                    <hr>
+                    <form action="{% url 'userprofile:updateAbout' user.id %}" method="post">
+                        {% csrf_token %}
+                        {% if about  %}
+                        
+                            
+                            <textarea class="w-100" name="about" id="about" cols="30" rows="10" required>{{about}}</textarea>
+                            
+                        
+                        {% else %}
+                        
+                            
+                            <textarea class="w-100" name="about" id="about" cols="30" rows="10">Write Something About You</textarea>
+                            
+                    
+                        {% endif %}
+                        <button type="submit" class="btn btn-success d-block w-75 mx-auto" style="border-radius: 20px;">Update</button>
+                    </form>
+                    
+                    
+                </div>
+                <hr>
+                <div class="card-link m-3 ml-auto">
+                    <a href="{% url 'code:dashboard' %}" class="registration-button">Go To Your Dashboard</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

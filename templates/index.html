@@ -1,0 +1,123 @@
+{% extends 'layout.html' %}
+
+
+{% load static %}
+<style>
+
+</style>
+{% block body %}
+
+        <div class="container w-100">
+            <h1 class="text-light">Home</h1>
+            <hr style="background: linear-gradient(to right, indigo, purple, blue, cyan); height: 3px;">
+            <div class="carousel slide" id="carousel-photos" data-ride="carousel">
+                <ol class="carousel-indicators" style="z-index: 1;">
+                    <li class="active" data-target="#carousel-photos" data-slide-to="0"></li>
+                    <li data-target="#carousel-photos" data-slide-to="1"></li>
+                    <li data-target="#carousel-photos" data-slide-to="2"></li>
+    
+                </ol>
+    
+                <div class="carousel-inner rounded" style="border: 3px solid purple; padding: 0;">
+                    <div class="carousel-item active " style="height: 300px;">
+                        <img src="{% static 'images/first.jpg' %}" class="d-block h-100 w-100" alt="">
+                        <div class="carousel-caption">
+                            <h3 class="h3 pb-5">
+                                This website will strengthen your programming skills
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item" style="height: 300px;">
+                        <img src="{% static 'images/second.jpg' %}" class="d-block h-100 w-100" alt="">
+                        <div class="carousel-caption">
+                            <h3 class="h3 pb-5">
+                                Researching is the most important thing.
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item" style="height: 300px;">
+                        <img src="{% static 'images/third.jpg' %}" class="d-block h-100 w-100" alt="">
+                        <div class="carousel-caption">
+                            <h3 class="h3 pb-5">
+                                Let's start discover new things and help people
+                            </h3>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <a href="#carousel-photos" class="carousel-control-prev" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a href="#carousel-photos" class="carousel-control-next" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+    
+            <div class="row mt-5">
+                <div class="col-md-6 text-center" >
+                    <a href="{% url 'code:codes' %}" class="button h2">Do you want to learn?</a>
+                    <h1 class="hr" style="color: white">Or</h1>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a href="{% url 'code:addNewCode' %}" class="button h2">Add new codes</a>
+                </div>
+            </div>
+        </div>
+        <style>
+            .container-fluid a{
+                color: white;
+            }
+            .container-fluid a:hover{
+                color: white;
+            }
+        </style>
+        <div class="container-fluid p-5 d-flex flex-column justify-content-center align-items-center" style="background: linear-gradient(to right, cyan 60%, blue); height: auto;">
+            <h2 class="text-light mb-3 text-center">Don't You Have Any Information About Programming Languages or Their Fields ?</h2>
+            <a href="#languages" class=" h5 text-center">Choose The Programming Language Which You Want To Research About It</a>
+        </div>
+
+
+
+
+        <style>
+            .language-button{
+                background: linear-gradient(45deg, red,orange, yellow  );
+                padding: 20px 25px;
+                color: white;
+                border-radius: 40px;
+                text-align: center;
+                font-size: 26px;
+                font-weight: bold;
+                display: block;
+            }
+
+            .language-button:hover{
+                border: 2px solid yellow;
+                padding: 18px 23px;
+           
+                cursor: pointer;
+                text-decoration: none;
+                color: white
+                
+            }
+
+        </style>
+
+
+        <div class="container mt-5" id="languages">
+
+            {% for language in languages %}
+   
+                <a class="language-button mb-3" href="{% url 'languages:detail' language.language %}">{{language.language}}</a>
+
+            
+            {% endfor %}
+
+        </div>
+
+
+
+
+    
+{% endblock %}

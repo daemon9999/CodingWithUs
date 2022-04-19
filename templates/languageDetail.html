@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% load static %}
+
+
+{% block body %}
+<style>
+    .component img{
+        height: 250px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+
+    }
+
+    .component{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+
+    }
+
+    .detail{
+        background: linear-gradient(60deg, red, orange);
+        opacity: 0.8;
+        padding: 20px 25px;
+        color: white;
+        border-radius: 20px;
+
+        
+    }
+    .list-group-item:first-of-type{
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    .list-group-item:last-of-type{
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    .list-group-item{
+        background: linear-gradient(to right, yellow, orange, red);
+        animation: Animation 2s ease-in-out infinite;
+        background-size: 300% 300%;
+        color: white;
+        text-align: center;
+    }
+
+    @keyframes Animation{
+        0%{background-position: 0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
+
+
+</style>
+    <div class="container">
+
+      <div class="component">
+        {% if language.language == "Python" %}
+        <img src="{% static 'images/Python.png' %}" alt="Python">
+        {% elif language.language == "Java" %}
+        <img src="{% static 'images/Java.png' %}" alt="Java">
+        {% elif language.language == "HtmlCss" %}
+        <img src="{% static 'images/HtmlCss.png' %}" alt="HtmlCss">
+        {% elif language.language == "JavaScript" %}
+        <img src="{% static 'images/JavaScript.png' %}" alt="JavaScript">
+        {% elif language.language == "C" %}
+        <img src="{% static 'images/C.png' %}" alt="C">
+        {% elif language.language == "C++" %}
+        <img src="{% static 'images/C++.png' %}" alt="C++">
+        {% elif language.language == "C#" %}
+        <img src="{% static 'images/C#.png' %}" alt="C#">
+        {% endif %}
+
+
+        <div class="detail">
+            {{language.language_detail|safe}}
+        </div>
+
+        <h3 class="text-light mt-5">Areas of Use of {{language.language}}</h3>
+        <ul class="list-group fields d-block w-100 mt-3">
+            {% for field in fields %}
+            <li class="list-group-item">{{field}}</li>
+            {% endfor %}
+        </ul>
+
+      </div>
+    </div>
+{% endblock %}

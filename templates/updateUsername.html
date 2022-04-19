@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+    <div class="container" style="padding-bottom: 100px;">
+        <h1 class="text-light pl-5 pt-5">Update Username</h1>
+        <form action="{% url 'userprofile:updateUsername' %}" method="post" class="register form-group px-5 pt-3 pb-5" >
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col-md-3">New Username</div>
+                <input type="text" class="col-md-9 form-control" name="newUsername" placeholder="Enter Your New Username" required>
+            </div>
+            <button type="submit" class="d-block registration-button">Change Your Name</button>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+
+
+<style>
+    @media only screen and (max-width: 576px) {
+        .row{
+            padding: 30px;
+        }
+        .img{
+            height: 200px;
+        }
+        img{
+            height: 100%;
+        }
+
+}
+.card, form button{
+    
+    
+    background: linear-gradient(-45deg, blue, cyan);
+    color: white;
+    border-radius: 20px;
+    border: none;
+}
+
+.card:hover, form button:hover{
+    background: linear-gradient(-45deg, indigo, purple,blue, cyan );
+    animation: Animation 2s ease infinite reverse;
+    background-size: 1000%;
+    cursor: pointer;
+}
+
+@keyframes Animation{
+    0%{background-position:0% 25%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+    
+}
+
+.card-img-top{
+    border-radius: 20px;
+}
+
+form .form-control::placeholder{
+    color: purple;
+}
+
+form .form-control:focus{
+    color: purple;
+}
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="text-light">All Codes</h1>
+            <p class="text-light">You can learn new codes here !</p>
+        </div>
+        <div class="col-md-6">
+            <form action="{% url 'code:search'  %}" method="post" class="d-flex pt-5">
+                {% csrf_token %}
+                <input type="text" name="title" placeholder="Title" class="form-control">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+    <hr class="mb-4" style="height: 3px; background: linear-gradient(to right, indigo, purple, blue, cyan);">
+    {% if codes %}
+    <div class="row">
+        {% for code in codes %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card mb-4 p-3" style="height: auto; overflow: hidden;">
+                <div class="img pb-4">
+                    {% if code.code_language == "Python" %}
+                    <img class="card-img-top" src="{% static '/images/Python.png' %}" alt="Python">
+                    {% elif code.code_language == "Java" %}
+                    <img class="card-img-top" src="{% static '/images/Java.png' %}" alt="Java">
+                    {% elif code.code_language == "JavaScript" %}
+                    <img class="card-img-top" src="{% static '/images/JavaScript.png' %}" alt="JavaScript">
+                    {% elif code.code_language == "C" %}
+                    <img class="card-img-top" src="{% static '/images/C.png' %}" alt="C">
+                    {% elif code.code_language == "C#" %}
+                    <img class="card-img-top" src="{% static '/images/C#.png' %}" alt="C#">
+                    {% elif code.code_language == "C++" %}
+                    <img class="card-img-top" src="{% static '/images/C++.png' %}" alt="C++">
+                    {% else %}
+                    <img class="card-img-top" src="{% static '/images/HtmlCss.png' %}" alt="HtmlCss">
+                    {% endif %}
+                </div>
+                <div class="card-title text-center mt-2 ">
+                    <h4>{{code.title}}</h4>        
+                </div>
+                <div class="card-text mt-auto disabled">
+                    This code was published by <span style="font-weight: bold;">
+                        {% if request.user.is_authenticated and request.user == code.author %}
+                        You
+                        {% else %}
+                        {{code.author}}
+                        {% endif %}
+                        
+                    </span>, {{code.code_created_date|date:"d.m.Y"}}
+                </div>
+                <div class="card-link pt-3">
+                    <a href="{% url 'code:detail' code.id %}" class="btn btn-success d-block  mb-auto">LOOK AT THE CODE</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% elif request.method == "POST" %}
+    <div class="alert">
+        This title has not been published here yet...
+    </div>
+    {% else %}
+    <div class="alert">
+       No code has not been published yet ...
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

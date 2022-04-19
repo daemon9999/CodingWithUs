@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+*{
+    font-family: "Roboto Slab";
+    box-sizing: border-box;
+
+}
+
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+   overflow-x: hidden; 
+   height: 100%;
+   width: 100%;
+}
+
+.header, nav, .table {
+    background: linear-gradient(to right, indigo 0%,purple 25%,blue 50%,cyan 100% );
+    text-align: center;
+    padding: 20px;
+    color: white;
+    
+    animation: Animation 4s ease infinite;
+    background-size: 400% 400%;
+
+}
+
+.fixed {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    top:0;
+}
+
+@keyframes Animation{
+    0%{background-position:0% 25%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+    
+}
+.header h2{
+    margin: 10px;
+}
+
+.programming{
+    height: 100px;
+}
+
+.programming img{
+    height: 100%;
+}
+
+
+.navbar-toggler:focus{
+    outline: 0;
+    box-shadow: 2px 2px 2px 2px purple;
+
+}
+
+@media only screen and (min-width: 768px) {
+    .mynavbar > ul > li:hover {
+        background: linear-gradient(blue,purple);
+        border-radius: 20px;
+
+    }
+
+    #carousel-photos .carousel-item{
+        height: 400px !important;
+    }
+
+
+    h1.hr{
+        display: none;
+    }
+
+    .background{
+        background-size: cover;
+    }
+
+    
+}
+.hr{
+    color: red;
+    width: 100px;
+    line-height: 100px;
+}
+.mynavbar .dropdown-menu li a{
+    text-decoration: none;
+    color:white;
+}
+
+.mynavbar .dropdown-menu  {
+    background: linear-gradient(purple, aqua);
+    border: 0;
+
+}
+.mynavbar .dropdown-menu li{
+    padding: 10px 15px;
+}
+
+.mynavbar .dropdown-menu li:hover {
+    background: linear-gradient(aqua, purple);
+
+} 
+
+.button{
+    border-radius: 10px;
+    padding: 10px;
+    background: linear-gradient(to right, indigo, purple, blue, cyan );
+    background-size: 400% 400%;
+    
+    color: white;
+    text-decoration: none;
+    transition: all 1s ease-in-out ;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    
+}
+
+.button:hover{
+    transition: all 1s ease-in-out ;
+    background-position: 100% 0%;
+    color: white;
+    text-decoration: none;
+    
+}
+
+.hr {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    color: purple;
+  }
+.hr:before, .hr:after{
+    content: "";
+    flex: 1 1;
+    border-bottom: 1px solid indigo;
+    margin: auto;
+
+}
+.hr:before {
+    margin-right: 10px
+}
+.hr:after {
+    margin-left: 10px
+}
+
+.background{
+    background-image: url("./images/background2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+    margin-top: auto;
+    
+
+    
+
+}
+
+.register .col-md-3 {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background: linear-gradient(to right, indigo, purple, blue, cyan);
+    
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+    border-radius: 0.25rem;
+    
+}
+
+.register input{
+    color: purple;
+}
+
+.register input:focus{
+    border: 1px solid purple;
+    box-shadow: 1px 1px purple;
+    color: purple;
+
+}
+
+.register input::placeholder{
+    color: purple;
+}
+
+.registration-button{
+    padding: 5px;
+    width: 100%;
+    background: linear-gradient(to right, blue, cyan);
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background-size: 350% 350%;
+    transition: all 1s ease-in-out;
+}
+
+.registration-button:hover{
+    background-position: 50% 0%;
+    transition: all 1s ease-in-out;
+}
+
+.registration-button:focus{
+    outline: none;
+
+}
+
+

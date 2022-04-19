@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container p-5">
+    <h1 class="text-light pl-5 pt-5">Login System</h1>
+
+    <form action="{% url 'userprofile:login' %}" class="register form-group px-5 pt-3 pb-5" method="post">
+        {% csrf_token %}
+        <div class="row mb-3">
+            <div class="col-md-3">Username</div>
+            <input type="text" class="col-md-9 form-control" name="username" placeholder="Enter Your Username" required>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">Email</div>
+            <input type="email" class="col-md-9 form-control" name="email" placeholder="Enter Your Email" required>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">Password</div>
+            <input type="password" class="col-md-9 form-control" name="password" placeholder="Enter Your Password" required>
+        </div>
+        {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{request.GET.next}}">
+        {% endif %}
+        <button type="submit" class="registration-button d-block">Login</button>
+    </form>
+</div>
+{% endblock %}

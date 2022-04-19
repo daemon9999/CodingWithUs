@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+
+{% block body %}
+<style>
+    .programminglanguages img:hover{
+        border: 5px purple solid;
+        transition: all 0.3s;
+    }
+</style>
+    <div class="container">
+        <h1 class="text-light">About This Website</h1>
+        
+        <hr style="height: 3px; background: linear-gradient(45deg, indigo, purple, blue, cyan);">
+
+        <div class="newBackground" style="background: linear-gradient(45deg, indigo, purple, blue, cyan); opacity: 0.8;">
+            <p style="font-size: 20px;" class="text-light p-4">
+                This website was created and published by Murad Masimli. The aim is to reinforce and broaden people's programming skills who are inquisitive about proggraming. In fact, people can learn by practicing. Beside looking at codes which help you, there would be more codes provided by you. For this situation, there is also one option that people can add their new codes when they want to do. But one problem is that the codes cannot be runned, just only looking at and understand the content. You can write codes here in these programming languages: Java, C#, Python, Javascript, C++, C and Html5, Css3(these are not supported but you can write) ! Good Luck in OUR PROGRAMMING WORLD !
+            </p>
+        </div>
+        <hr style="height: 3px; background: linear-gradient(45deg, indigo, purple, blue, cyan);">
+
+        <div class="programminglanguages mt-5" style="height: 500px;">
+            <img src="{% static 'images/programminglanguages2.png' %}" alt="Programming Languages" class="h-100 w-100" style="border-radius: 20px; cursor: pointer;">
+        </div>
+    </div>
+    
+{% endblock %}
+
+
+

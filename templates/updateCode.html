@@ -1,0 +1,119 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+
+{% block body %}
+<style>
+    [type=radio]{
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    [type=radio] + img {
+        cursor: pointer;
+        height: 200px;
+        border-radius: 10px;
+    }
+
+    [type=radio]:checked + img{
+        border: 5px solid purple;
+        transition: all 0.3s;
+    }
+</style>
+<div class="container ">
+    <h1 class="text-light">Choose Your Programming Language</h1>
+    <hr style="height: 3px; background: linear-gradient(to right, indigo, purple, blue, cyan);">
+    <form action="{% url 'code:update' code.id %}" method="post">
+        {% csrf_token %}
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label>
+                    <input type="radio" name="language" value="Java" {% if code.code_language == "Java" %} checked {% endif %}  required>
+                    <img src="{% static 'images/Java.png' %}" alt="Java">
+                </label>
+            </div>
+            <div class="col-md-6">
+                <label>
+                    <input type="radio" name="language" value="C#" {% if code.code_language == "C#" %} checked {% endif %} required>
+                    <img src="{% static 'images/C#.png' %}" alt="C#">
+                </label>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label>
+                    <input type="radio" name="language" value="Python" {% if code.code_language == "Python" %} checked {% endif %} required>
+                    <img src="{% static 'images/Python.png' %}" alt="Python">
+                </label>
+            </div>
+            <div class="col-md-6">
+                <label>
+                    <input type="radio" name="language" value="JavaScript" {% if code.code_language == "JavaScript" %} checked {% endif %} required>
+                    <img src="{% static 'images/JavaScript.png' %}" alt="JavaScript">
+                </label>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label>
+                    <input type="radio" name="language" value="C" {% if code.code_language == "C" %} checked {% endif %} required>
+                    <img src="{% static 'images/C.png' %}" alt="C">
+                </label>
+            </div>
+            <div class="col-md-6">
+                <label>
+                    <input type="radio" name="language" value="C++" {% if code.code_language == "C++" %} checked {% endif %} required>
+                    <img src="{% static 'images/C++.png' %}" alt="C++">
+                </label>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-12">
+                
+                <label>
+                    <input type="radio" name="language" value="Html/Css" {% if code.code_language == "Html/Css" %} checked {% endif %} required>
+                    <img src="{% static 'images/HtmlCss.png' %}" alt="Html/Css">
+                </label>
+                
+            </div>
+        </div>
+        <div class="row form-group register">
+            <div class="col-md-3">
+                Title
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="title" placeholder="Enter Your Code's Title" value="{{code.title}}" required>
+            </div>
+        </div>
+        <div class="row form-group register">
+            <div class="col-md-3">
+                Code
+            </div>
+            <div class="col-md-9">
+               <textarea name="code" id="code" cols="30" rows="10" required>{{code.code|safe}}</textarea>
+            </div>
+        </div>
+        <button class="registration-button d-block" type="submit">Update</button>
+    </form>
+</div>
+
+<script src="{% static 'javascript/javascript.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<script>
+    CKEDITOR.addCss('.cke_editable { background-color: black; color: white }');
+    CKEDITOR.replace('code', {
+        language: "en", 
+        theme: "dark",
+        allowedContent: true,
+        startupMode: 'source',
+    });
+</script>
+
+
+{% endblock %}
